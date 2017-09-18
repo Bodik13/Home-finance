@@ -16,6 +16,8 @@
 		43E45A391F6E750100BA8B5A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E45A381F6E750100BA8B5A /* Category.swift */; };
 		43E45A3B1F6E75C000BA8B5A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E45A3A1F6E75C000BA8B5A /* Transaction.swift */; };
 		43E45A3D1F6E774800BA8B5A /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E45A3C1F6E774800BA8B5A /* StoreManager.swift */; };
+		43EA716D1F7058A500CDE8F0 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EA716C1F7058A500CDE8F0 /* NewCategoryViewController.swift */; };
+		43EA71701F705D0000CDE8F0 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EA716F1F705D0000CDE8F0 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		43E45A381F6E750100BA8B5A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		43E45A3A1F6E75C000BA8B5A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		43E45A3C1F6E774800BA8B5A /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		43EA716C1F7058A500CDE8F0 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
+		43EA716F1F705D0000CDE8F0 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		43E45A231F6E712900BA8B5A /* Home finance */ = {
 			isa = PBXGroup;
 			children = (
+				43EA716E1F705CCC00CDE8F0 /* Extensions */,
 				43E45A371F6E748700BA8B5A /* Model */,
 				43E45A361F6E747700BA8B5A /* Controllers */,
 				43E45A241F6E712A00BA8B5A /* AppDelegate.swift */,
@@ -78,6 +83,7 @@
 			children = (
 				43E45A261F6E712A00BA8B5A /* MainController.swift */,
 				43C3950A1F6F04F1002D98D8 /* CategoriesViewController.swift */,
+				43EA716C1F7058A500CDE8F0 /* NewCategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -90,6 +96,14 @@
 				43E45A3C1F6E774800BA8B5A /* StoreManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		43EA716E1F705CCC00CDE8F0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				43EA716F1F705D0000CDE8F0 /* UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,7 +182,9 @@
 				43E45A251F6E712A00BA8B5A /* AppDelegate.swift in Sources */,
 				43C3950B1F6F04F1002D98D8 /* CategoriesViewController.swift in Sources */,
 				43E45A3D1F6E774800BA8B5A /* StoreManager.swift in Sources */,
+				43EA716D1F7058A500CDE8F0 /* NewCategoryViewController.swift in Sources */,
 				43E45A3B1F6E75C000BA8B5A /* Transaction.swift in Sources */,
+				43EA71701F705D0000CDE8F0 /* UIViewController.swift in Sources */,
 				43E45A391F6E750100BA8B5A /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

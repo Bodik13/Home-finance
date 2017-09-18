@@ -19,7 +19,10 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTapArround()
         self.title = "Categories"
+        let addCategoryItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategoryItemClicked))
+        self.navigationItem.setRightBarButton(addCategoryItem, animated: true)
 
         // Do any additional setup after loading the view.
     }
@@ -40,8 +43,12 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "reuseCell")
-        cell.textLabel?.text = "\(self.categories[indexPath.row].id)"
+        cell.textLabel?.text = "\(self.categories[indexPath.row].name)"
         return cell
+    }
+    
+    @objc func addCategoryItemClicked() {
+        self.performSegue(withIdentifier: "toNewCategory", sender: nil)
     }
     
 

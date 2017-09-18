@@ -20,8 +20,9 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTapArround()
         self.title = "Home finance"
-        let categoryItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategoryClick))
+        let categoryItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addCategoryClick))
         self.navigationItem.setRightBarButton(categoryItem, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
     }

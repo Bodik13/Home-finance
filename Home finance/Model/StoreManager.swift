@@ -31,7 +31,10 @@ class StoreManager: NSObject {
     }
     
     func addCategory(name: String, description: String?) {
-        let newCategory = Category(id: UUID().hashValue, name: name, description: description)
+        let newCategory = Category()
+        newCategory.id = UUID().hashValue
+        newCategory.name = name
+        newCategory.catDescription = description
         self.categories.append(newCategory)
         //save category to phone memmory
     }
