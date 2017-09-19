@@ -11,6 +11,7 @@ import UIKit
 class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var transactionsTableView: UITableView!
+    @IBOutlet weak var expenseButton: UIButton!
     
     var transactions = [Transaction]() {
         didSet {
@@ -40,14 +41,17 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    @IBAction func expenseButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toNewTransaction", sender: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.transactions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = "\(transactions[indexPath.row].cost)"
+        cell.textLabel?.text = "\(transactions[indexPath.row].tranDescription ?? "")"
         return cell
     }
 }

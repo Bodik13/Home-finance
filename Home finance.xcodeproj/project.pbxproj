@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F85A4AC1F713DCF00EE4E6C /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F85A4AB1F713DCF00EE4E6C /* NewTransactionViewController.swift */; };
 		43C3950B1F6F04F1002D98D8 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3950A1F6F04F1002D98D8 /* CategoriesViewController.swift */; };
 		43E45A251F6E712A00BA8B5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E45A241F6E712A00BA8B5A /* AppDelegate.swift */; };
 		43E45A271F6E712A00BA8B5A /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E45A261F6E712A00BA8B5A /* MainController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F85A4AB1F713DCF00EE4E6C /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
 		43C3950A1F6F04F1002D98D8 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		43E45A211F6E712900BA8B5A /* Home finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home finance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E45A241F6E712A00BA8B5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				43E45A261F6E712A00BA8B5A /* MainController.swift */,
 				43C3950A1F6F04F1002D98D8 /* CategoriesViewController.swift */,
 				43EA716C1F7058A500CDE8F0 /* NewCategoryViewController.swift */,
+				3F85A4AB1F713DCF00EE4E6C /* NewTransactionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				43C3950B1F6F04F1002D98D8 /* CategoriesViewController.swift in Sources */,
 				43E45A3D1F6E774800BA8B5A /* StoreManager.swift in Sources */,
 				43EA716D1F7058A500CDE8F0 /* NewCategoryViewController.swift in Sources */,
+				3F85A4AC1F713DCF00EE4E6C /* NewTransactionViewController.swift in Sources */,
 				43E45A3B1F6E75C000BA8B5A /* Transaction.swift in Sources */,
 				43EA71701F705D0000CDE8F0 /* UIViewController.swift in Sources */,
 				43E45A391F6E750100BA8B5A /* Category.swift in Sources */,

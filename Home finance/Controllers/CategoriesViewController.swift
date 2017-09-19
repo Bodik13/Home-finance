@@ -43,7 +43,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "reuseCell")
-        cell.textLabel?.text = "\(self.categories[indexPath.row].name)"
+        cell.textLabel?.text = "\(self.categories[indexPath.row].name ?? "")"
         return cell
     }
     

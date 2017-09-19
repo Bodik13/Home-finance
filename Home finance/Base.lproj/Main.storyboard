@@ -32,6 +32,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyo-pL-VUS">
                                 <rect key="frame" x="191.5" y="80" width="167.5" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="expenseButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tGa-ei-ahq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -51,13 +54,66 @@
                     </view>
                     <navigationItem key="navigationItem" id="b95-Iq-UMt"/>
                     <connections>
+                        <outlet property="expenseButton" destination="Oyo-pL-VUS" id="Hks-xc-hRS"/>
                         <outlet property="transactionsTableView" destination="1J9-dY-gvT" id="9Zm-Lw-2t4"/>
                         <segue destination="Kzk-Mx-ihN" kind="show" identifier="toCatefory" id="Lyw-tc-oAh"/>
+                        <segue destination="oN3-3m-4UN" kind="show" identifier="toNewTransaction" id="Ept-si-83J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="456.80000000000001" y="117.39130434782609"/>
+        </scene>
+        <!--New Transaction View Controller-->
+        <scene sceneID="ifr-Pn-7cC">
+            <objects>
+                <viewController id="oN3-3m-4UN" customClass="NewTransactionViewController" customModule="Home_finance" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k2F-Nc-fxK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WG0-hY-Vzq">
+                                <rect key="frame" x="16" y="80" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mtT-xD-7bP">
+                                <rect key="frame" x="16" y="117" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-IQ-TXn">
+                                <rect key="frame" x="16" y="621" width="343" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="saveButtonClicked:" destination="oN3-3m-4UN" eventType="touchUpInside" id="XME-3h-OEz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mtT-xD-7bP" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="BcZ-b6-0Aq"/>
+                            <constraint firstItem="WG0-hY-Vzq" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="Cec-XV-NWg"/>
+                            <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="WG0-hY-Vzq" secondAttribute="trailing" constant="16" id="DdD-eA-vZ4"/>
+                            <constraint firstItem="Bm9-IQ-TXn" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="d8U-Mg-G6R"/>
+                            <constraint firstItem="z57-ea-uci" firstAttribute="bottom" secondItem="Bm9-IQ-TXn" secondAttribute="bottom" constant="16" id="gHJ-gy-CTR"/>
+                            <constraint firstItem="WG0-hY-Vzq" firstAttribute="top" secondItem="z57-ea-uci" secondAttribute="top" constant="16" id="iqG-tu-fRM"/>
+                            <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="Bm9-IQ-TXn" secondAttribute="trailing" constant="16" id="jG1-VY-K98"/>
+                            <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="mtT-xD-7bP" secondAttribute="trailing" constant="16" id="ubd-fe-Mk6"/>
+                            <constraint firstItem="mtT-xD-7bP" firstAttribute="top" secondItem="WG0-hY-Vzq" secondAttribute="bottom" constant="16" id="yBC-el-TSH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="z57-ea-uci"/>
+                    </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="mtT-xD-7bP" id="1aB-Bs-cFJ"/>
+                        <outlet property="saveButton" destination="Bm9-IQ-TXn" id="gDA-Ed-nI3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g0x-J8-e7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457" y="825"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="xXx-yZ-2WD">

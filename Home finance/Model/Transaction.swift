@@ -21,17 +21,7 @@ class Transaction: NSObject, NSCoding {
     var idCategory: Int?
     var tranDescription: String?
     var cost: Int?
-    
-//    override init(idCategory: Int) {
-//        super.init()
-////        self.id =
-//    }
-//    func init(idCategory: Int, tranDescription: String?, cost: Int?) {
-//        self.id = UUID().hashValue
-//        self.idCategory = idCategory
-//        self.tranDescription = tranDescription
-//        self.cost = cost
-//    }
+
     override init() {
         super.init()
     }
@@ -39,7 +29,7 @@ class Transaction: NSObject, NSCoding {
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.id, forKey: Keys.idKey)
         aCoder.encode(self.idCategory, forKey: Keys.idCategotyKey)
-        aCoder.encode(self.description, forKey: Keys.descriptionKey)
+        aCoder.encode(self.tranDescription, forKey: Keys.descriptionKey)
         aCoder.encode(self.cost, forKey: Keys.costKey)
     }
     
@@ -49,6 +39,4 @@ class Transaction: NSObject, NSCoding {
         self.tranDescription = aDecoder.decodeObject(forKey: Keys.descriptionKey) as? String
         self.cost = aDecoder.decodeObject(forKey: Keys.costKey) as? Int
     }
-    
-    
 }

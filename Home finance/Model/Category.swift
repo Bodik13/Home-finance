@@ -9,11 +9,13 @@
 import Foundation
 
 class Category: NSObject, NSCoding {
+    
     struct Keys {
         static let idKey = "id"
         static let nameKey = "name"
         static let descriptionKey = "description"
     }
+    
     var id: Int?
     var name: String?
     var catDescription: String?

@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum DataType: String {
+    case transaction = "Transaction.plist"
+    case category = "Category.plist"
+}
+
 class StoreManager: NSObject {
     static let sharedInstance = StoreManager()
     
@@ -16,18 +21,26 @@ class StoreManager: NSObject {
         self.loadData()
     }
     
-    private var categories = [Category]()
-    private var transactions = [Transaction]()
-    
-    var filePath: String {
-        let manager = FileManager.default
-        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-        print("this is the url path in the documentDirectory \(url)")
-        return (url!.appendingPathComponent("Data").path)
+    private var categories = [Category]() {
+        didSet {
+            self.saveDataCategory()
+        }
+    }
+    private var transactions = [Transaction]() {
+        didSet {
+            self.saveDataTransaction()
+        }
+    }
+
+    deinit {
+        self.saveDataCategory()
+        self.saveDataTransaction()
     }
     
-    deinit {
-        self.saveData()
+    func filePath(type: DataType) -> String {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first! as NSURL
+        return url.appendingPathComponent(type.rawValue)!.path
     }
     
     func addCategory(name: String, description: String?) {
@@ -56,16 +69,19 @@ class StoreManager: NSObject {
         return self.transactions
     }
     
-    func saveData() {
-        NSKeyedArchiver.archiveRootObject(self.transactions, toFile: filePath)
-        NSKeyedArchiver.archiveRootObject(self.categories, toFile: filePath)
+    func saveDataTransaction() {
+        NSKeyedArchiver.archiveRootObject(self.transactions, toFile: filePath(type: .transaction))
+    }
+    
+    func saveDataCategory() {
+        NSKeyedArchiver.archiveRootObject(self.categories, toFile:  filePath(type: .category))
     }
     
     private func loadData() {
-        if let transactions = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [Transaction] {
+        if let transactions = NSKeyedUnarchiver.unarchiveObject(withFile: filePath(type: .transaction)) as? [Transaction] {
             self.transactions = transactions
         }
-        if let categories = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [Category] {
+        if let categories = NSKeyedUnarchiver.unarchiveObject(withFile: filePath(type: .category)) as? [Category] {
             self.categories = categories
         }
     }
