@@ -25,11 +25,11 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="sY7-hL-otd"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94F-O1-87h">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94F-O1-87h" customClass="OvalButton" customModule="Home_finance" customModuleProvider="target">
                                 <rect key="frame" x="16" y="80" width="167.5" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyo-pL-VUS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyo-pL-VUS" customClass="OvalButton" customModule="Home_finance" customModuleProvider="target">
                                 <rect key="frame" x="191.5" y="80" width="167.5" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -55,6 +55,7 @@
                     <navigationItem key="navigationItem" id="b95-Iq-UMt"/>
                     <connections>
                         <outlet property="expenseButton" destination="Oyo-pL-VUS" id="Hks-xc-hRS"/>
+                        <outlet property="incomeButton" destination="94F-O1-87h" id="2aO-zO-yPn"/>
                         <outlet property="transactionsTableView" destination="1J9-dY-gvT" id="9Zm-Lw-2t4"/>
                         <segue destination="Kzk-Mx-ihN" kind="show" identifier="toCatefory" id="Lyw-tc-oAh"/>
                         <segue destination="oN3-3m-4UN" kind="show" identifier="toNewTransaction" id="Ept-si-83J"/>
@@ -82,7 +83,7 @@
                                 <rect key="frame" x="16" y="117" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-IQ-TXn">
                                 <rect key="frame" x="16" y="621" width="343" height="30"/>
@@ -91,24 +92,46 @@
                                     <action selector="saveButtonClicked:" destination="oN3-3m-4UN" eventType="touchUpInside" id="XME-3h-OEz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRj-xN-Elm">
+                                <rect key="frame" x="16" y="163" width="343" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <connections>
+                                    <action selector="selectCategoryButtonClicked:" destination="oN3-3m-4UN" eventType="touchUpInside" id="dCR-WM-rvi"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IOn-JU-r77">
+                                <rect key="frame" x="16" y="211" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IOn-JU-r77" firstAttribute="top" secondItem="NRj-xN-Elm" secondAttribute="bottom" constant="16" id="1qb-p9-Ah1"/>
+                            <constraint firstItem="NRj-xN-Elm" firstAttribute="top" secondItem="mtT-xD-7bP" secondAttribute="bottom" constant="16" id="3QA-Oq-J32"/>
+                            <constraint firstItem="IOn-JU-r77" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="6cS-qr-X07"/>
+                            <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="IOn-JU-r77" secondAttribute="trailing" constant="16" id="7Qh-Nx-cjn"/>
                             <constraint firstItem="mtT-xD-7bP" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="BcZ-b6-0Aq"/>
                             <constraint firstItem="WG0-hY-Vzq" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="Cec-XV-NWg"/>
                             <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="WG0-hY-Vzq" secondAttribute="trailing" constant="16" id="DdD-eA-vZ4"/>
                             <constraint firstItem="Bm9-IQ-TXn" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="d8U-Mg-G6R"/>
+                            <constraint firstItem="NRj-xN-Elm" firstAttribute="leading" secondItem="z57-ea-uci" secondAttribute="leading" constant="16" id="eMZ-mv-5S2"/>
                             <constraint firstItem="z57-ea-uci" firstAttribute="bottom" secondItem="Bm9-IQ-TXn" secondAttribute="bottom" constant="16" id="gHJ-gy-CTR"/>
                             <constraint firstItem="WG0-hY-Vzq" firstAttribute="top" secondItem="z57-ea-uci" secondAttribute="top" constant="16" id="iqG-tu-fRM"/>
                             <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="Bm9-IQ-TXn" secondAttribute="trailing" constant="16" id="jG1-VY-K98"/>
+                            <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="NRj-xN-Elm" secondAttribute="trailing" constant="16" id="tXI-lG-WE9"/>
                             <constraint firstItem="z57-ea-uci" firstAttribute="trailing" secondItem="mtT-xD-7bP" secondAttribute="trailing" constant="16" id="ubd-fe-Mk6"/>
                             <constraint firstItem="mtT-xD-7bP" firstAttribute="top" secondItem="WG0-hY-Vzq" secondAttribute="bottom" constant="16" id="yBC-el-TSH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z57-ea-uci"/>
                     </view>
                     <connections>
-                        <outlet property="nameTextField" destination="mtT-xD-7bP" id="1aB-Bs-cFJ"/>
+                        <outlet property="categoryButton" destination="NRj-xN-Elm" id="OEC-eJ-fG9"/>
+                        <outlet property="descriptionTextField" destination="IOn-JU-r77" id="dgc-S6-Seo"/>
+                        <outlet property="emountTextField" destination="mtT-xD-7bP" id="QhO-oB-SA3"/>
                         <outlet property="saveButton" destination="Bm9-IQ-TXn" id="gDA-Ed-nI3"/>
+                        <segue destination="Kzk-Mx-ihN" kind="show" identifier="toCategories" id="bLZ-6S-QtC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0x-J8-e7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,7 +147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UkI-2m-fzH">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="16" y="80" width="343" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Kzk-Mx-ihN" id="sfq-XP-pbW"/>
@@ -134,10 +157,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UkI-2m-fzH" firstAttribute="top" secondItem="T8b-6n-fzV" secondAttribute="top" id="AdI-H5-zjl"/>
-                            <constraint firstItem="UkI-2m-fzH" firstAttribute="leading" secondItem="T8b-6n-fzV" secondAttribute="leading" id="Shc-5j-b54"/>
-                            <constraint firstItem="T8b-6n-fzV" firstAttribute="bottom" secondItem="UkI-2m-fzH" secondAttribute="bottom" id="gCO-6u-owA"/>
-                            <constraint firstItem="T8b-6n-fzV" firstAttribute="trailing" secondItem="UkI-2m-fzH" secondAttribute="trailing" id="wSh-4q-wuM"/>
+                            <constraint firstItem="UkI-2m-fzH" firstAttribute="leading" secondItem="T8b-6n-fzV" secondAttribute="leading" constant="16" id="Cxq-2a-vnY"/>
+                            <constraint firstItem="T8b-6n-fzV" firstAttribute="trailing" secondItem="UkI-2m-fzH" secondAttribute="trailing" constant="16" id="NNh-1f-SL8"/>
+                            <constraint firstItem="UkI-2m-fzH" firstAttribute="top" secondItem="T8b-6n-fzV" secondAttribute="top" constant="16" id="R4n-PV-RDK"/>
+                            <constraint firstItem="T8b-6n-fzV" firstAttribute="bottom" secondItem="UkI-2m-fzH" secondAttribute="bottom" constant="16" id="gWQ-mT-EfM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T8b-6n-fzV"/>
                     </view>
@@ -148,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CT0-6w-Ou8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1234" y="116"/>
+            <point key="canvasLocation" x="1232.8" y="115.59220389805098"/>
         </scene>
         <!--New Category View Controller-->
         <scene sceneID="vjh-l1-9Nh">
@@ -245,4 +268,7 @@
             <point key="canvasLocation" x="-303" y="117"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Lyw-tc-oAh"/>
+    </inferredMetricsTieBreakers>
 </document>

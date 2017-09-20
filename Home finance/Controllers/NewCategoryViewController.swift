@@ -20,7 +20,7 @@ class NewCategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTapArround()
+        self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
 

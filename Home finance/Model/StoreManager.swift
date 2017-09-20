@@ -21,16 +21,8 @@ class StoreManager: NSObject {
         self.loadData()
     }
     
-    private var categories = [Category]() {
-        didSet {
-            self.saveDataCategory()
-        }
-    }
-    private var transactions = [Transaction]() {
-        didSet {
-            self.saveDataTransaction()
-        }
-    }
+    private var categories = [Category]()
+    private var transactions = [Transaction]()
 
     deinit {
         self.saveDataCategory()
@@ -75,6 +67,12 @@ class StoreManager: NSObject {
     
     func saveDataCategory() {
         NSKeyedArchiver.archiveRootObject(self.categories, toFile:  filePath(type: .category))
+    }
+    
+    func saveData() {
+        self.saveDataCategory()
+        self.saveDataTransaction()
+        print("Data saved: Transactions, Categories")
     }
     
     private func loadData() {

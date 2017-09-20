@@ -12,6 +12,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var categoriesTableView: UITableView!
     
+    var saveAction: ((Category) -> ())?
+    
     var categories = [Category]() {
         didSet {
             self.categoriesTableView.reloadData()
@@ -19,7 +21,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTapArround()
+//        self.hideKeyboardWhenTappedAround()
         self.title = "Categories"
         let addCategoryItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategoryItemClicked))
         self.navigationItem.setRightBarButton(addCategoryItem, animated: true)
@@ -44,8 +46,16 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "reuseCell")
         cell.textLabel?.text = "\(self.categories[indexPath.row].name ?? "")"
+        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCategory = self.categories[indexPath.row]
+        self.saveAction!(selectedCategory)
+        self.navigationController?.popViewController(animated: true)
+    }
+
     
     @objc func addCategoryItemClicked() {
         self.performSegue(withIdentifier: "toNewCategory", sender: nil)

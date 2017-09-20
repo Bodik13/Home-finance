@@ -11,7 +11,8 @@ import UIKit
 class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var transactionsTableView: UITableView!
-    @IBOutlet weak var expenseButton: UIButton!
+    @IBOutlet weak var expenseButton: OvalButton!
+    @IBOutlet weak var incomeButton: OvalButton!
     
     var transactions = [Transaction]() {
         didSet {
@@ -21,8 +22,13 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTapArround()
+        self.hideKeyboardWhenTappedAround()
+        self.transactionsTableView.tableFooterView = UIView(frame: CGRect.zero)
         self.title = "Home finance"
+        self.expenseButton.setTitle("Expense", for: .normal)
+        self.expenseButton.backgroundColor = UIColor.red
+        self.incomeButton.setTitle("Income", for: .normal)
+        self.incomeButton.backgroundColor = UIColor.green
         let categoryItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addCategoryClick))
         self.navigationItem.setRightBarButton(categoryItem, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
