@@ -11,14 +11,27 @@ import UIKit
 class NewTransactionViewController: UIViewController {
     
     @IBOutlet weak var emountTextField: UITextField!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: OvalButton!
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var descriptionTextField: UITextField!
     
-    var selectedCategoryID: Int?
+    var selectedCategory: Category? {
+        didSet {
+            self.categoryButton.setTitle(selectedCategory?.name, for: .normal)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "New Transaction"
+        self.saveButton.backgroundColor = UIColor.lightGray
+        self.saveButton.setTitle("Save", for: .normal)
+        self.categoryButton.setTitle("Category", for: .normal)
+        self.categoryButton.layer.cornerRadius = 4
+        self.categoryButton.layer.borderWidth = 1
+        self.categoryButton.layer.borderColor = UIColor.lightGray.cgColor
+        self.emountTextField.placeholder = "Emount"
+        self.descriptionTextField.placeholder = "Description"
         
         // Do any additional setup after loading the view.
     }
@@ -29,9 +42,11 @@ class NewTransactionViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        if self.selectedCategoryID != nil {
-            StoreManager.sharedInstance.createTransaction(idCategory: self.selectedCategoryID, description: self.descriptionTextField.text, cost: Int(self.emountTextField.text!))
+        if self.selectedCategory != nil {
+            StoreManager.sharedInstance.createTransaction(idCategory: self.selectedCategory?.id, description: self.descriptionTextField.text, cost: Int(self.emountTextField.text ?? "0"))
             self.navigationController?.popViewController(animated: true)
+        } else {
+            self.showAllert(title: "Error", message: "Please, select category!")
         }
     }
     
@@ -39,20 +54,11 @@ class NewTransactionViewController: UIViewController {
         self.performSegue(withIdentifier: "toCategories", sender: nil)
     }
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let categoriesVC = segue.destination as? CategoriesViewController {
             categoriesVC.saveAction = { [unowned self] (category) in
-                print(category.name)
+                self.selectedCategory = category
             }
         }
-     }
- 
-    
-    
-    
+    }
 }

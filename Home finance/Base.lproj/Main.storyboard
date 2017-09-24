@@ -52,7 +52,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="b95-Iq-UMt"/>
+                    <navigationItem key="navigationItem" id="b95-Iq-UMt">
+                        <barButtonItem key="backBarButtonItem" title=" " id="nUM-Wc-pQY"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="expenseButton" destination="Oyo-pL-VUS" id="Hks-xc-hRS"/>
                         <outlet property="incomeButton" destination="94F-O1-87h" id="2aO-zO-yPn"/>
@@ -85,7 +87,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-IQ-TXn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-IQ-TXn" customClass="OvalButton" customModule="Home_finance" customModuleProvider="target">
                                 <rect key="frame" x="16" y="621" width="343" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -209,7 +211,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UH-dp-Lsw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UH-dp-Lsw" customClass="OvalButton" customModule="Home_finance" customModuleProvider="target">
                                 <rect key="frame" x="16" y="621" width="343" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -269,6 +271,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Lyw-tc-oAh"/>
+        <segue reference="bLZ-6S-QtC"/>
     </inferredMetricsTieBreakers>
 </document>

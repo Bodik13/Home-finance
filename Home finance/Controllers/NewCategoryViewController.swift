@@ -10,7 +10,7 @@ import UIKit
 
 class NewCategoryViewController: UIViewController {
     
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addButton: OvalButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
@@ -21,6 +21,8 @@ class NewCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        self.addButton.backgroundColor = UIColor.lightGray
+        self.addButton.setTitle("Save", for: .normal)
         // Do any additional setup after loading the view.
     }
 
