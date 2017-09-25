@@ -57,7 +57,8 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = "\(transactions[indexPath.row]. ?? "")"
+        cell.textLabel?.text = "\(transactions[indexPath.row].tranDescription ?? "")"
+        cell.detailTextLabel?.text = self.transactions[indexPath.row].date?.toString
         return cell
     }
 }

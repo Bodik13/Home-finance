@@ -15,12 +15,14 @@ class Transaction: NSObject, NSCoding {
         static let idCategotyKey = "category"
         static let descriptionKey = "description"
         static let costKey = "cost"
+        static let dateKey = "date"
     }
     
     var id: Int?
     var idCategory: Int?
     var tranDescription: String?
     var cost: Int?
+    var date: Date?
 
     override init() {
         super.init()
@@ -31,6 +33,7 @@ class Transaction: NSObject, NSCoding {
         aCoder.encode(self.idCategory, forKey: Keys.idCategotyKey)
         aCoder.encode(self.tranDescription, forKey: Keys.descriptionKey)
         aCoder.encode(self.cost, forKey: Keys.costKey)
+        aCoder.encode(self.date, forKey: Keys.dateKey)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -38,5 +41,6 @@ class Transaction: NSObject, NSCoding {
         self.idCategory = aDecoder.decodeObject(forKey: Keys.idCategotyKey) as? Int
         self.tranDescription = aDecoder.decodeObject(forKey: Keys.descriptionKey) as? String
         self.cost = aDecoder.decodeObject(forKey: Keys.costKey) as? Int
+        self.date = aDecoder.decodeObject(forKey: Keys.dateKey) as? Date
     }
 }

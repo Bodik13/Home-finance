@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F85A4AC1F713DCF00EE4E6C /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F85A4AB1F713DCF00EE4E6C /* NewTransactionViewController.swift */; };
+		432960FF1F79953A004206D2 /* ParentNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432960FE1F799539004206D2 /* ParentNavController.swift */; };
+		432961011F799C5E004206D2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432961001F799C5E004206D2 /* Date.swift */; };
 		43C3950B1F6F04F1002D98D8 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3950A1F6F04F1002D98D8 /* CategoriesViewController.swift */; };
 		43E45A251F6E712A00BA8B5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E45A241F6E712A00BA8B5A /* AppDelegate.swift */; };
 		43E45A271F6E712A00BA8B5A /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E45A261F6E712A00BA8B5A /* MainController.swift */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		3F85A4AB1F713DCF00EE4E6C /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
+		432960FE1F799539004206D2 /* ParentNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentNavController.swift; sourceTree = "<group>"; };
+		432961001F799C5E004206D2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		43C3950A1F6F04F1002D98D8 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		43E45A211F6E712900BA8B5A /* Home finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home finance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E45A241F6E712A00BA8B5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 				43C3950A1F6F04F1002D98D8 /* CategoriesViewController.swift */,
 				43EA716C1F7058A500CDE8F0 /* NewCategoryViewController.swift */,
 				3F85A4AB1F713DCF00EE4E6C /* NewTransactionViewController.swift */,
+				432960FE1F799539004206D2 /* ParentNavController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				43EA716F1F705D0000CDE8F0 /* UIViewController.swift */,
+				432961001F799C5E004206D2 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,6 +205,8 @@
 				43FC07301F72F0A500842034 /* OvalButton.swift in Sources */,
 				43EA716D1F7058A500CDE8F0 /* NewCategoryViewController.swift in Sources */,
 				3F85A4AC1F713DCF00EE4E6C /* NewTransactionViewController.swift in Sources */,
+				432961011F799C5E004206D2 /* Date.swift in Sources */,
+				432960FF1F79953A004206D2 /* ParentNavController.swift in Sources */,
 				43E45A3B1F6E75C000BA8B5A /* Transaction.swift in Sources */,
 				43EA71701F705D0000CDE8F0 /* UIViewController.swift in Sources */,
 				43E45A391F6E750100BA8B5A /* Category.swift in Sources */,

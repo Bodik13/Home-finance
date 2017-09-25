@@ -30,7 +30,7 @@ class NewTransactionViewController: UIViewController {
         self.categoryButton.layer.cornerRadius = 4
         self.categoryButton.layer.borderWidth = 1
         self.categoryButton.layer.borderColor = UIColor.lightGray.cgColor
-        self.emountTextField.placeholder = "Emount"
+        self.emountTextField.placeholder = "0"
         self.descriptionTextField.placeholder = "Description"
         
         // Do any additional setup after loading the view.
@@ -43,7 +43,8 @@ class NewTransactionViewController: UIViewController {
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         if self.selectedCategory != nil {
-            StoreManager.sharedInstance.createTransaction(idCategory: self.selectedCategory?.id, description: self.descriptionTextField.text, cost: Int(self.emountTextField.text ?? "0"))
+            let currentDate = Date()
+            StoreManager.sharedInstance.createTransaction(idCategory: self.selectedCategory?.id, description: self.descriptionTextField.text, cost: Int(self.emountTextField.text ?? "0"), date:currentDate)
             self.navigationController?.popViewController(animated: true)
         } else {
             self.showAllert(title: "Error", message: "Please, select category!")

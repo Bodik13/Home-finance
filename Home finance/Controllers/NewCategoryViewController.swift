@@ -10,19 +10,24 @@ import UIKit
 
 class NewCategoryViewController: UIViewController {
     
+    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var addButton: OvalButton!
-    @IBOutlet weak var titleLabel: UILabel!
+
     @IBOutlet weak var subtitleLabel: UILabel!
     
     @IBOutlet weak var categoryNameTextField: UITextField!
     
-    @IBOutlet weak var categoryDescriptionTextView: UITextView!
+    @IBOutlet weak var categoryDescription: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         self.addButton.backgroundColor = UIColor.lightGray
         self.addButton.setTitle("Save", for: .normal)
+        self.categoryImageView.backgroundColor = UIColor.lightGray
+        self.categoryImageView.layer.cornerRadius = 8
+        self.categoryImageView.layer.borderColor = UIColor.lightGray.cgColor
+        self.categoryImageView.layer.borderWidth = 1
         // Do any additional setup after loading the view.
     }
 
@@ -31,8 +36,13 @@ class NewCategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
     @IBAction func addButtonClicked(_ sender: Any) {
-        StoreManager.sharedInstance.addCategory(name: self.categoryNameTextField.text!, description: self.categoryDescriptionTextView.text)
+        StoreManager.sharedInstance.addCategory(name: self.categoryNameTextField.text!, description: self.categoryDescription.text)
         self.navigationController?.popViewController(animated: true)
     }
     
