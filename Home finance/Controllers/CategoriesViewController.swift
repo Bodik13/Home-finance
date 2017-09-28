@@ -54,13 +54,28 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCategory = self.categories[indexPath.row]
-        self.saveAction!(selectedCategory)
+        self.saveAction?(selectedCategory)
         self.navigationController?.popViewController(animated: true)
     }
 
     
     @objc func addCategoryItemClicked() {
         self.performSegue(withIdentifier: "toNewCategory", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete"
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            StoreManager.sharedInstance.removeCategory(by: self.categories[indexPath.row].id ?? 0)
+            self.categories = StoreManager.sharedInstance.allCategories()
+        }
     }
     
 

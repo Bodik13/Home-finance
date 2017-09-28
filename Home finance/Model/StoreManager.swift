@@ -59,6 +59,26 @@ class StoreManager: NSObject {
         self.transactions.append(newTransaction)
     }
     
+    func removeTransaction(by id: Int) {
+        for transactionIndex in 0...self.transactions.count - 1 {
+            let transaction = self.transactions[transactionIndex]
+            if transaction.id == id {
+                self.transactions.remove(at: transactionIndex)
+            }
+        }
+    }
+    
+    func removeCategory(by id: Int) {
+
+        self.categories.forEach { (category) in
+            if category.id == id {
+                let categoryIndex = self.categories.index(of: category)
+                    
+                self.categories.remove(at: categoryIndex!)
+            }
+        }
+    }
+    
     func allTransactions() -> [Transaction] {
         return self.transactions
     }

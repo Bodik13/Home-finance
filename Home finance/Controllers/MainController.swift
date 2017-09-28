@@ -95,14 +95,29 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         switch transaction.transactionType {
         case TransactionType.income.rawValue?:
-            transactionCell.transactionState.text = "\u{38}"
+            transactionCell.transactionState.text = "\u{25B2}"
         case TransactionType.expense.rawValue?:
-            transactionCell.transactionState.text = "\u{40}"
+            transactionCell.transactionState.text = "\u{25BC}"
         default:
             print("...")
         }
         
         return transactionCell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete"
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            StoreManager.sharedInstance.removeTransaction(by: self.transactions[indexPath.row].id ?? 0)
+            self.transactions = StoreManager.sharedInstance.allTransactions()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
