@@ -22,7 +22,7 @@ class NewCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        self.addButton.backgroundColor = UIColor.lightGray
+        self.addButton.backgroundColor = Defaults.Colors.LIGHT_GREEN_COLOR
         self.addButton.setTitle("Save", for: .normal)
         self.categoryImageView.backgroundColor = UIColor.lightGray
         self.categoryImageView.layer.cornerRadius = 8

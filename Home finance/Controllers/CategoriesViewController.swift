@@ -22,7 +22,9 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.hideKeyboardWhenTappedAround()
+        self.categoriesTableView.tableFooterView = UIView(frame: CGRect.zero)
         self.title = "Categories"
+        
         let addCategoryItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategoryItemClicked))
         self.navigationItem.setRightBarButton(addCategoryItem, animated: true)
 

@@ -14,6 +14,8 @@ class ParentNavController: UINavigationController {
         super.viewDidLoad()
         self.navigationBar.barStyle = UIBarStyle.black
         self.navigationBar.tintColor = UIColor.white
+        
+        self.navigationBar.barTintColor = Defaults.Colors.NAVBAR_BG_COLOR
 
         // Do any additional setup after loading the view.
     }

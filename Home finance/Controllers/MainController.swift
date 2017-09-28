@@ -8,12 +8,30 @@
 
 import UIKit
 
+enum TransactionType: Int {
+    case income = 0
+    case expense = 1
+    
+    func getType(from value:Int) -> TransactionType {
+        switch value {
+        case 0:
+            return TransactionType.income
+        case 1:
+            return TransactionType.expense
+        default:
+            print("error type")
+            return TransactionType.expense
+        }
+    }
+}
+
 class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var transactionsTableView: UITableView!
     @IBOutlet weak var expenseButton: OvalButton!
     @IBOutlet weak var incomeButton: OvalButton!
     
+    var transactionType: TransactionType = .expense
     var transactions = [Transaction]() {
         didSet {
             self.transactionsTableView.reloadData()
@@ -26,11 +44,15 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.transactionsTableView.tableFooterView = UIView(frame: CGRect.zero)
         self.title = "Home finance"
         self.expenseButton.setTitle("Expense", for: .normal)
-        self.expenseButton.backgroundColor = UIColor.red
+        self.expenseButton.backgroundColor = Defaults.Colors.EXPENSE_BTN_BG_COLOR
         self.incomeButton.setTitle("Income", for: .normal)
-        self.incomeButton.backgroundColor = UIColor.green
+        self.incomeButton.backgroundColor = Defaults.Colors.INCOME_BTN_BG_COLOR
         let categoryItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addCategoryClick))
         self.navigationItem.setRightBarButton(categoryItem, animated: true)
+        
+        //configure table
+        self.transactionsTableView.layer.cornerRadius = 8
+        self.transactionsTableView.backgroundColor = Defaults.Colors.LIGHT_GREY_COLOR.withAlphaComponent(0.3)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -47,7 +69,12 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func incomeButtonClicked(_ sender: Any) {
+        self.transactionType = .income
+        self.performSegue(withIdentifier: "toNewTransaction", sender: nil)
+    }
     @IBAction func expenseButtonClicked(_ sender: Any) {
+        self.transactionType = .expense
         self.performSegue(withIdentifier: "toNewTransaction", sender: nil)
     }
     
@@ -56,10 +83,32 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = "\(transactions[indexPath.row].tranDescription ?? "")"
-        cell.detailTextLabel?.text = self.transactions[indexPath.row].date?.toString
-        return cell
+        let transactionCell = tableView.dequeueReusableCell(withIdentifier: "transactionCell") as! TransactionTableViewCell
+        let transaction = transactions[indexPath.row]
+//        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+//        transactionCell.textLabel?.text = "\(transactions[indexPath.row].tranDescription ?? "")"
+//        transactionCell.detailTextLabel?.text = self.transactions[indexPath.row].date?.toString
+        
+        transactionCell.nameLabel.text = transaction.tranDescription
+        transactionCell.descriptionnameLabel.text = transaction.date?.toString ?? ""
+        transactionCell.coastLabel.text = "\(String(describing: transaction.cost ?? 0)) UAH"
+        
+        switch transaction.transactionType {
+        case TransactionType.income.rawValue?:
+            transactionCell.transactionState.text = "\u{38}"
+        case TransactionType.expense.rawValue?:
+            transactionCell.transactionState.text = "\u{40}"
+        default:
+            print("...")
+        }
+        
+        return transactionCell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let transactionVC = segue.destination as? NewTransactionViewController {
+            transactionVC.transactionType = self.transactionType
+        }
     }
 }
 

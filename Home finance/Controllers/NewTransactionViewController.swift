@@ -14,7 +14,9 @@ class NewTransactionViewController: UIViewController {
     @IBOutlet weak var saveButton: OvalButton!
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var subtitleLabel: UILabel!
     
+    var transactionType: TransactionType = .expense
     var selectedCategory: Category? {
         didSet {
             self.categoryButton.setTitle(selectedCategory?.name, for: .normal)
@@ -23,8 +25,17 @@ class NewTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.title = "New Transaction"
-        self.saveButton.backgroundColor = UIColor.lightGray
+        
+        switch self.transactionType {
+        case .expense:
+            self.subtitleLabel.text = "Expense transaction"
+        case .income:
+            self.subtitleLabel.text = "Income transaction"
+        }
+        
+        self.saveButton.backgroundColor = Defaults.Colors.LIGHT_GREEN_COLOR
         self.saveButton.setTitle("Save", for: .normal)
         self.categoryButton.setTitle("Category", for: .normal)
         self.categoryButton.layer.cornerRadius = 4
@@ -44,7 +55,7 @@ class NewTransactionViewController: UIViewController {
     @IBAction func saveButtonClicked(_ sender: Any) {
         if self.selectedCategory != nil {
             let currentDate = Date()
-            StoreManager.sharedInstance.createTransaction(idCategory: self.selectedCategory?.id, description: self.descriptionTextField.text, cost: Int(self.emountTextField.text ?? "0"), date:currentDate)
+            StoreManager.sharedInstance.createTransaction(idCategory: self.selectedCategory?.id, description: self.descriptionTextField.text, cost: Int(self.emountTextField.text ?? "0"), date:currentDate, transactionType:self.transactionType)
             self.navigationController?.popViewController(animated: true)
         } else {
             self.showAllert(title: "Error", message: "Please, select category!")

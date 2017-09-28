@@ -20,7 +20,7 @@ class OvalButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         self.setTitleColor(UIColor.white, for: .normal)
         self.layer.cornerRadius = 8
         self.layer.shadowRadius = 4

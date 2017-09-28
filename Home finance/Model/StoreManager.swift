@@ -48,13 +48,14 @@ class StoreManager: NSObject {
         return self.categories
     }
     
-    func createTransaction(idCategory: Int?, description: String?, cost: Int?, date: Date?) {
+    func createTransaction(idCategory: Int?, description: String?, cost: Int?, date: Date?, transactionType: TransactionType?) {
         let newTransaction = Transaction()
         newTransaction.id = UUID().hashValue
         newTransaction.idCategory = idCategory
         newTransaction.tranDescription = description
         newTransaction.cost = cost
         newTransaction.date = date
+        newTransaction.transactionType = transactionType?.rawValue
         self.transactions.append(newTransaction)
     }
     
