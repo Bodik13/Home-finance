@@ -9,6 +9,50 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Chart View Controller-->
+        <scene sceneID="90a-yh-JaH">
+            <objects>
+                <viewController id="tJe-sL-at2" customClass="ChartViewController" customModule="Home_finance" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vXO-Mb-mJQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SqH-v7-lCS" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qR0-05-a1h">
+                                <rect key="frame" x="30" y="80" width="315" height="29"/>
+                                <segments>
+                                    <segment title="Income"/>
+                                    <segment title="Expense"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentValueDidChange:" destination="tJe-sL-at2" eventType="valueChanged" id="Evm-Cz-5YS"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qR0-05-a1h" firstAttribute="leading" secondItem="9dH-Hh-Mou" secondAttribute="leading" constant="30" id="1wS-1O-26L"/>
+                            <constraint firstItem="qR0-05-a1h" firstAttribute="top" secondItem="9dH-Hh-Mou" secondAttribute="top" constant="16" id="77m-Fj-U9R"/>
+                            <constraint firstItem="9dH-Hh-Mou" firstAttribute="bottom" secondItem="SqH-v7-lCS" secondAttribute="bottom" id="O1s-4D-TYU"/>
+                            <constraint firstItem="9dH-Hh-Mou" firstAttribute="trailing" secondItem="SqH-v7-lCS" secondAttribute="trailing" id="htJ-R5-gep"/>
+                            <constraint firstItem="9dH-Hh-Mou" firstAttribute="trailing" secondItem="qR0-05-a1h" secondAttribute="trailing" constant="30" id="nsg-gr-pdJ"/>
+                            <constraint firstItem="SqH-v7-lCS" firstAttribute="leading" secondItem="9dH-Hh-Mou" secondAttribute="leading" id="syM-1l-Lcc"/>
+                            <constraint firstItem="SqH-v7-lCS" firstAttribute="top" secondItem="qR0-05-a1h" secondAttribute="bottom" constant="16" id="y2t-9Y-i6C"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9dH-Hh-Mou"/>
+                    </view>
+                    <connections>
+                        <outlet property="pieChart" destination="SqH-v7-lCS" id="E7J-Gl-SmI"/>
+                        <outlet property="transactionType" destination="qR0-05-a1h" id="YV3-Ji-Bdy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lo1-H9-OAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1233" y="-577"/>
+        </scene>
         <!--Main Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -134,6 +178,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="b95-Iq-UMt">
                         <barButtonItem key="backBarButtonItem" title=" " id="nUM-Wc-pQY"/>
+                        <barButtonItem key="leftBarButtonItem" title="Chart" image="ic_chart" id="Zdw-w3-JUY">
+                            <connections>
+                                <segue destination="tJe-sL-at2" kind="show" id="sAj-xm-qFE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="expenseButton" destination="Oyo-pL-VUS" id="Hks-xc-hRS"/>
@@ -367,6 +416,9 @@
             <point key="canvasLocation" x="-303" y="117"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_chart" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lyw-tc-oAh"/>
     </inferredMetricsTieBreakers>

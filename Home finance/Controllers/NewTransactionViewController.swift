@@ -22,19 +22,11 @@ class NewTransactionViewController: UIViewController {
             self.categoryButton.setTitle(selectedCategory?.name, for: .normal)
         }
     }
+    var transactionForEdit: Transaction?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        self.title = "New Transaction"
-        
-        switch self.transactionType {
-        case .expense:
-            self.subtitleLabel.text = "Expense transaction"
-        case .income:
-            self.subtitleLabel.text = "Income transaction"
-        }
-        
         self.saveButton.backgroundColor = Defaults.Colors.LIGHT_GREEN_COLOR
         self.saveButton.setTitle("Save", for: .normal)
         self.categoryButton.setTitle("Category", for: .normal)
@@ -43,6 +35,23 @@ class NewTransactionViewController: UIViewController {
         self.categoryButton.layer.borderColor = UIColor.lightGray.cgColor
         self.emountTextField.placeholder = "0"
         self.descriptionTextField.placeholder = "Description"
+        
+        self.title = "New Transaction"
+        
+        switch self.transactionType {
+        case .expense:
+            self.subtitleLabel.text = "Expense transaction"
+        case .income:
+            self.subtitleLabel.text = "Income transaction"
+        case .edit:
+            self.subtitleLabel.text = "Edit transaction"
+            self.emountTextField.text = String(self.transactionForEdit?.cost ?? 0)
+            let category = StoreManager.sharedInstance.getCategory(by: transactionForEdit?.idCategory ?? 0)
+            self.descriptionTextField.text = self.transactionForEdit?.tranDescription
+            self.selectedCategory = category
+            self.transactionType = self.transactionForEdit?.transactionType == 0 ? .income : .expense
+            
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -55,6 +64,7 @@ class NewTransactionViewController: UIViewController {
     @IBAction func saveButtonClicked(_ sender: Any) {
         if self.selectedCategory != nil {
             let currentDate = Date()
+            StoreManager.sharedInstance.removeTransaction(by: self.transactionForEdit?.id ?? 0)
             StoreManager.sharedInstance.createTransaction(idCategory: self.selectedCategory?.id, description: self.descriptionTextField.text, cost: Int(self.emountTextField.text ?? "0"), date:currentDate, transactionType:self.transactionType)
             self.navigationController?.popViewController(animated: true)
         } else {

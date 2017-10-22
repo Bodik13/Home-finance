@@ -59,24 +59,42 @@ class StoreManager: NSObject {
         self.transactions.append(newTransaction)
     }
     
+    func updateTransaction(idCategory: Int?, description: String?, cost: Int?, date: Date?, transactionType: TransactionType?) {
+        let updateTransaction = Transaction()
+        updateTransaction.id = UUID().hashValue
+        updateTransaction.idCategory = idCategory
+        updateTransaction.tranDescription = description
+        updateTransaction.cost = cost
+        updateTransaction.date = date
+        updateTransaction.transactionType = transactionType?.rawValue
+        self.transactions.append(updateTransaction)
+    }
+    
     func removeTransaction(by id: Int) {
-        for transactionIndex in 0...self.transactions.count - 1 {
-            let transaction = self.transactions[transactionIndex]
+        self.transactions.forEach { (transaction) in
             if transaction.id == id {
-                self.transactions.remove(at: transactionIndex)
+                guard let index = self.transactions.index(of: transaction) else { return }
+                self.transactions.remove(at: index)
             }
         }
     }
     
     func removeCategory(by id: Int) {
-
         self.categories.forEach { (category) in
             if category.id == id {
-                let categoryIndex = self.categories.index(of: category)
-                    
-                self.categories.remove(at: categoryIndex!)
+                guard let categoryIndex = self.categories.index(of: category) else { return }
+                self.categories.remove(at: categoryIndex)
             }
         }
+    }
+    
+    func getCategory(by id: Int) -> Category? {
+        for category in self.categories {
+            if category.id == id {
+                return category
+            }
+        }
+        return nil
     }
     
     func allTransactions() -> [Transaction] {

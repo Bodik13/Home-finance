@@ -11,6 +11,7 @@ import UIKit
 enum TransactionType: Int {
     case income = 0
     case expense = 1
+    case edit = 2
     
     func getType(from value:Int) -> TransactionType {
         switch value {
@@ -18,6 +19,8 @@ enum TransactionType: Int {
             return TransactionType.income
         case 1:
             return TransactionType.expense
+        case 2:
+            return TransactionType.edit
         default:
             print("error type")
             return TransactionType.expense
@@ -37,6 +40,8 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.transactionsTableView.reloadData()
         }
     }
+    
+    var transactionForEdit: Transaction?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,10 +90,6 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let transactionCell = tableView.dequeueReusableCell(withIdentifier: "transactionCell") as! TransactionTableViewCell
         let transaction = transactions[indexPath.row]
-//        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-//        transactionCell.textLabel?.text = "\(transactions[indexPath.row].tranDescription ?? "")"
-//        transactionCell.detailTextLabel?.text = self.transactions[indexPath.row].date?.toString
-        
         transactionCell.nameLabel.text = transaction.tranDescription
         transactionCell.descriptionnameLabel.text = transaction.date?.toString ?? ""
         transactionCell.coastLabel.text = "\(String(describing: transaction.cost ?? 0)) UAH"
@@ -108,20 +109,25 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Delete"
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { action, indexPath  in
             StoreManager.sharedInstance.removeTransaction(by: self.transactions[indexPath.row].id ?? 0)
             self.transactions = StoreManager.sharedInstance.allTransactions()
         }
+        
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { action, indexPath in
+            self.transactionType = .edit
+            self.transactionForEdit = self.transactions[indexPath.row]
+            
+            self.performSegue(withIdentifier: "toNewTransaction", sender: nil)
+        }
+        return [deleteAction, editAction]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let transactionVC = segue.destination as? NewTransactionViewController {
+            transactionVC.transactionForEdit = self.transactionForEdit
             transactionVC.transactionType = self.transactionType
         }
     }
